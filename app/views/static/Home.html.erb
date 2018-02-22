@@ -1,3 +1,25 @@
+<% if current_user %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        User Info Here
+      </section>
+      <section class="stats">
+        User Stats
+      </section>
+      <section class="micropost_form">
+        Form for Workout
+      </section>
+      <section class="micropost_form">
+        Form for nutrition
+      </section>
+    </aside>
+    <div class="col-md-8">
+      <h3>Micropost Feed</h3>
+    </div>
+  </div>
+<% else %>
+
 <div class="pimg1">
   <div class="ptext">
     <span class="pborder">
@@ -51,3 +73,4 @@
     </span>
   </div>
 </div>
+<% end %>
