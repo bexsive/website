@@ -12,25 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20180222011643) do
 
-  create_table "body_parts", force: :cascade do |t|
-    t.string "name"
-    t.integer "exercise_id"
-    t.index ["exercise_id"], name: "index_body_parts_on_exercise_id"
-  end
-
-  create_table "exercises", force: :cascade do |t|
-    t.string "name"
-    t.integer "workout_id"
-    t.index ["workout_id"], name: "index_exercises_on_workout_id"
-  end
-
-  create_table "sets", force: :cascade do |t|
-    t.integer "reps"
-    t.time "duration"
-    t.integer "exercise_id"
-    t.index ["exercise_id"], name: "index_sets_on_exercise_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -50,14 +31,6 @@ ActiveRecord::Schema.define(version: 20180222011643) do
     t.boolean "is_male"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "workouts", force: :cascade do |t|
-    t.string "name"
-    t.datetime "date"
-    t.time "duration"
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_workouts_on_user_id"
   end
 
 end
