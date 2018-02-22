@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802042542) do
+ActiveRecord::Schema.define(version: 20180221022810) do
+
+  create_table "body_parts", force: :cascade do |t|
+    t.string "name"
+    t.integer "exercise_id"
+    t.index ["exercise_id"], name: "index_body_parts_on_exercise_id"
+  end
+
+  create_table "exercises", force: :cascade do |t|
+    t.string "name"
+    t.integer "workout_id"
+    t.index ["workout_id"], name: "index_exercises_on_workout_id"
+  end
+
+  create_table "sets", force: :cascade do |t|
+    t.integer "reps"
+    t.time "duration"
+    t.integer "exercise_id"
+    t.index ["exercise_id"], name: "index_sets_on_exercise_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,6 +46,14 @@ ActiveRecord::Schema.define(version: 20170802042542) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "workouts", force: :cascade do |t|
+    t.string "name"
+    t.datetime "date"
+    t.time "duration"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_workouts_on_user_id"
   end
 
 end
