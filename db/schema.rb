@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180222011643) do
+ActiveRecord::Schema.define(version: 20180222074917) do
+
+  create_table "exercises", force: :cascade do |t|
+    t.string "name"
+    t.integer "set_id"
+    t.integer "muscle_id"
+    t.index ["muscle_id"], name: "index_exercises_on_muscle_id"
+    t.index ["set_id"], name: "index_exercises_on_set_id"
+  end
+
+  create_table "muscles", force: :cascade do |t|
+    t.string "name"
+    t.integer "exercise_id"
+    t.index ["exercise_id"], name: "index_muscles_on_exercise_id"
+  end
+
+  create_table "sets", force: :cascade do |t|
+    t.integer "workout_id"
+    t.integer "exercise_id"
+    t.integer "reps"
+    t.integer "weight"
+    t.time "duration"
+    t.index ["exercise_id"], name: "index_sets_on_exercise_id"
+    t.index ["workout_id"], name: "index_sets_on_workout_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -31,6 +55,13 @@ ActiveRecord::Schema.define(version: 20180222011643) do
     t.boolean "is_male"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "workouts", force: :cascade do |t|
+    t.datetime "date"
+    t.string "name"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_workouts_on_user_id"
   end
 
 end
