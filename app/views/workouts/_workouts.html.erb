@@ -1,0 +1,14 @@
+<h1>Workouts</h1>
+
+<table>
+
+  <tbody>
+    <% @workouts.each do |workout| %>
+      <tr>
+        <td><%= link_to "#{workout.name}", user_workout_path(@user, workout) %></td>
+        <td><%= link_to 'Edit', edit_user_workout_path(@user, workout) %></td>
+        <td><%= link_to 'Destroy', [@user, workout], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
