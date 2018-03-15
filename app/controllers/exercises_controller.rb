@@ -6,9 +6,11 @@ class ExercisesController < ApplicationController
   end
 
   def new
+    @exercise = Exercise.new
   end
 
   def create
+    @exercise = Exercise.new(exercise_params)
   end
 
   def edit
@@ -18,5 +20,11 @@ class ExercisesController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def exercise_params
+    params.require(:exercise).permit(:name)
   end
 end

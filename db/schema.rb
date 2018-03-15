@@ -10,20 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180222074917) do
+ActiveRecord::Schema.define(version: 20180314014718) do
 
   create_table "exercises", force: :cascade do |t|
     t.string "name"
-    t.integer "set_id"
+  end
+
+  create_table "muscle_exercises", force: :cascade do |t|
     t.integer "muscle_id"
-    t.index ["muscle_id"], name: "index_exercises_on_muscle_id"
-    t.index ["set_id"], name: "index_exercises_on_set_id"
+    t.integer "exercise_id"
   end
 
   create_table "muscles", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "set_exercises", force: :cascade do |t|
+    t.integer "set_id"
     t.integer "exercise_id"
-    t.index ["exercise_id"], name: "index_muscles_on_exercise_id"
   end
 
   create_table "sets", force: :cascade do |t|
