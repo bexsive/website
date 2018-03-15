@@ -1,8 +1,8 @@
-<%= form_for @set do |f| %>
+<%= form_for ([@workout, @workout.lifts.build]) do |f| %>
 
   <div class="field">
     <%= f.label :exercise %>
-    <%= f.collection_select( :exercise, Exercise.all, :id, :name) %><br />
+    <%= f.collection_select( :exercise_id, Exercise.all, :id, :name) %><br />
   </div>
 
   <div class="field">

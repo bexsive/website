@@ -6,8 +6,9 @@ class WorkoutsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:user_id])
     @workout = Workout.find(params[:id])
+    @lifts = @workout.lifts
+#    @lift = @workout.sets.first
   end
 
   def new

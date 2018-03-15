@@ -1,5 +1,5 @@
 class Exercise < ApplicationRecord
-  has_many :exercise_muscles
-  has_many :muscles, through: :exercise_muscles
-  
+  has_many :muscle_exercises
+  has_many :muscles, through: :muscle_exercises
+
 end

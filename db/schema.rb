@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180314014718) do
+ActiveRecord::Schema.define(version: 20180315211741) do
 
   create_table "exercises", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "lifts", force: :cascade do |t|
+    t.integer "workout_id"
+    t.integer "exercise_id"
+    t.integer "reps"
+    t.integer "weight"
+    t.time "duration"
+    t.index ["exercise_id"], name: "index_lifts_on_exercise_id"
+    t.index ["workout_id"], name: "index_lifts_on_workout_id"
   end
 
   create_table "muscle_exercises", force: :cascade do |t|
@@ -28,16 +38,6 @@ ActiveRecord::Schema.define(version: 20180314014718) do
   create_table "set_exercises", force: :cascade do |t|
     t.integer "set_id"
     t.integer "exercise_id"
-  end
-
-  create_table "sets", force: :cascade do |t|
-    t.integer "workout_id"
-    t.integer "exercise_id"
-    t.integer "reps"
-    t.integer "weight"
-    t.time "duration"
-    t.index ["exercise_id"], name: "index_sets_on_exercise_id"
-    t.index ["workout_id"], name: "index_sets_on_workout_id"
   end
 
   create_table "users", force: :cascade do |t|
